@@ -1,6 +1,7 @@
 
 
 let operation = "";
+const operationArray = [];
 
 //add
 function add(a, b) {
@@ -54,6 +55,25 @@ const botbox = document.querySelector("#botbox");
     num.addEventListener("click", () => {
         operation += num.textContent;
         botbox.textContent = operation;
+    })
+})
+
+
+const topbox = document.querySelector("#topbox");
+const arithmeticOper = document.querySelectorAll(".ops");
+[...arithmeticOper].forEach(ope => {
+    ope.addEventListener("click", () => {
+
+
+        if (operation!="") operationArray.push(+operation)
+        
+        if (operationArray.at(-1) != '+' && operationArray.at(-1) != '-' && operationArray.at(-1) != '/' && operationArray.at(-1) != '×') operationArray.push(ope.textContent)
+        
+        
+        topbox.textContent = operationArray.join(" ");
+        operation = '';
+        botbox.textContent = operation;
+        
     })
 })
 
