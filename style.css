@@ -10,8 +10,8 @@ body {
 }
 
 #box {
-    height: 15rem;
-    width: 25rem;
+    height: 3.5rem;
+    width: 24rem;
     border: .5rem solid #3c4048;
     border-radius: 25px;
 }
@@ -116,3 +116,13 @@ a:hover {
 img {
     margin-left: 5px;
 }
+
+#box {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+    padding: 1rem;
+    font-size: 3rem;
+}
+
