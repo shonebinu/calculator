@@ -1,5 +1,7 @@
 
 
+let operation = "";
+
 //add
 function add(a, b) {
     return a+b;
@@ -42,3 +44,17 @@ const operate = (operator, a, b) => {
             break;           
         }
 }
+
+
+
+const nums = document.querySelector("#nums").children;
+const botbox = document.querySelector("#botbox");
+
+[...nums].forEach(num => {
+    num.addEventListener("click", () => {
+        operation += num.textContent;
+        botbox.textContent = operation;
+    })
+})
+
+

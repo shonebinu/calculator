@@ -9,13 +9,6 @@ body {
     min-height: 97vh;
 }
 
-#box {
-    height: 3.5rem;
-    width: 24rem;
-    border: .5rem solid #3c4048;
-    border-radius: 25px;
-}
-
 #nums {
     max-width: 30rem;
     display: flex;
@@ -117,12 +110,39 @@ img {
     margin-left: 5px;
 }
 
+
+
 #box {
+    height: 12rem;
+    width: 30rem;
+    padding: 15px;
+    border: .5rem solid #3c4048;
+    border-radius: 25px;
     display: flex;
-    flex-direction: row;
-    justify-content: end;
-    align-items: end;
-    padding: 1rem;
-    font-size: 3rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
+#topbox {
+    height: 2rem;
+    margin-right: 1rem;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+#botbox {
+    font-size: 2.5rem;
+    padding: .5rem;
+        word-wrap: break-word;
+    word-break: break-all;
+    
+}
+
+.but:active {
+    background-color: white;
+}
