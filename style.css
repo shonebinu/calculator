@@ -127,7 +127,7 @@ img {
 #topbox {
     height: 2rem;
     margin-right: 1rem;
-    padding-top: 1rem;
+    padding-top: .2rem;
     display: flex;
     align-items: center;
     font-size: 1.1rem;
