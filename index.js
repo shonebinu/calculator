@@ -128,9 +128,10 @@ const controls = document.querySelectorAll(".con");
         }
 
         if (con.textContent == '.') {
-            if (operation.includes('.')) return
+            if (`${operation}`.includes('.')) return
             operation += '.';
             botbox.textContent = operation;
+            
         }
 
     })
@@ -152,18 +153,18 @@ function equalto() {
 
         newArray.unshift(operate(operator, firstVar, secondVar))
 
-        console.log(newArray)
+       
 
 
     }
 
     let result = newArray[0];
-  
+    operation = result; 
 
-    botbox.textContent = result;
+    botbox.textContent = operation;
 
 
-    operation = result;
+    
     operationArray = [];
 
 
