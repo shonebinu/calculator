@@ -127,6 +127,12 @@ const controls = document.querySelectorAll(".con");
             equalto()
         }
 
+        if (con.textContent == '.') {
+            if (operation.includes('.')) return
+            operation += '.';
+            botbox.textContent = operation;
+        }
+
     })
 })
 
@@ -166,6 +172,5 @@ function equalto() {
 
 
 /*
-TODO: Add the support for '.' (decimal) and round the values to precision of somewhat good
 Keyboard support
 */
