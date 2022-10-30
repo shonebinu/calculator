@@ -168,6 +168,4 @@ function equalto() {
 /*
 TODO: Add the support for '.' (decimal) and round the values to precision of somewhat good
 Keyboard support
-Operator changing when clicking another operator
-Working with next calculations after the '='
 */
