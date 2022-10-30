@@ -3,6 +3,8 @@
 
 [Calculator's Live Demo](https://shonebinu.github.io/calculator/)
 
+![Calculator app image](https://raw.githubusercontent.com/shonebinu/calculator/main/calculatorappimage.png)
+
 ## Features
 - Keyboard Compatible
 - Works with Decimal value
