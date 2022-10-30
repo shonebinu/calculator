@@ -59,13 +59,11 @@ const botbox = document.querySelector("#botbox");
 })
 
 
+
 const topbox = document.querySelector("#topbox");
 const arithmeticOper = document.querySelectorAll(".ops");
 [...arithmeticOper].forEach(ope => {
     ope.addEventListener("click", () => {
-
-        
-
 
         if (operation!="") operationArray.push(+operation)
 
@@ -172,7 +170,89 @@ function equalto() {
 
 
 
-/*
-Keyboard support
-Better Readme
-*/
+
+// Keyboard
+
+let keyBoardNums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+let keyBoardOpe = ["+", "-", "/", "*"]
+let keyBoardCon = ['Enter', 'Backspace', '.']
+document.addEventListener("keydown", (e) => {
+
+    if (keyBoardNums.includes(e.key)) {
+        
+        operation += e.key;
+        botbox.textContent = operation;
+
+    }
+
+    if (keyBoardOpe.includes(e.key)) {
+        
+        if (operation!="") operationArray.push(+operation)
+
+        if (operationArray[0]==undefined) return
+        
+        if (operationArray.at(-1) != '=' && operationArray.at(-1) != '+' && operationArray.at(-1) != '-' && operationArray.at(-1) != '/' && operationArray.at(-1) != '×') {
+        
+            if (e.key == '*') {
+                operationArray.push('×')
+            } else operationArray.push(e.key)
+        
+        }
+        topbox.textContent = operationArray.join(" ");
+        operation = '';
+        botbox.textContent = operation;
+
+        e.preventDefault()
+    }
+
+    if (keyBoardCon.includes(e.key)) {
+        if (e.key == "Backspace") {
+            
+            let interArray = operation.split("");
+
+            interArray.pop();
+
+            operation = interArray.join("");
+            
+            botbox.textContent = operation;
+        }
+
+        if (e.key == 'Enter') {
+
+            if (operationArray.find(item => item=='=')) return
+
+
+
+            if (operationArray[0] == undefined) return
+
+
+
+            if ((operation == '') && (
+                operationArray.at(-1) == '+' ||
+                operationArray.at(-1) == '-' ||
+                operationArray.at(-1) == '/' ||
+                operationArray.at(-1) == '×'
+            )) return
+
+
+
+            operationArray.push(+operation);
+            operationArray.push('=');
+            operation = '';
+            botbox.textContent = operation;
+            topbox.textContent = operationArray.join(" ")
+
+            equalto()
+        }
+
+        if (e.key == '.') {
+            if (`${operation}`.includes('.')) return
+            operation += '.';
+            botbox.textContent = operation;
+            
+        }
+
+        e.preventDefault()
+    }
+
+})
