@@ -64,8 +64,12 @@ const arithmeticOper = document.querySelectorAll(".ops");
 [...arithmeticOper].forEach(ope => {
     ope.addEventListener("click", () => {
 
+        
+
 
         if (operation!="") operationArray.push(+operation)
+
+        if (!operationArray[0]) return
         
         if (operationArray.at(-1) != '+' && operationArray.at(-1) != '-' && operationArray.at(-1) != '/' && operationArray.at(-1) != '×') operationArray.push(ope.textContent)
         
@@ -94,6 +98,43 @@ const controls = document.querySelectorAll(".con");
             
             botbox.textContent = operation;
         }
+
+        if (con.textContent == '=') {
+
+            if (operationArray.find(item => item=='=')) return
+
+
+
+            if (operationArray[0] == undefined) return
+
+
+
+            if ((operation == '') && (
+                operationArray.at(-1) == '+' ||
+                operationArray.at(-1) == '-' ||
+                operationArray.at(-1) == '/' ||
+                operationArray.at(-1) == '×'
+            )) return
+
+
+
+
+            
+
+
+
+
+
+
+            operationArray.push(+operation);
+            operationArray.push(con.textContent);
+            operation = '';
+            botbox.textContent = operation;
+            topbox.textContent = operationArray.join(" ")
+
+            equalto()
+        }
+
     })
 })
 
