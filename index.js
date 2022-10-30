@@ -71,7 +71,7 @@ const arithmeticOper = document.querySelectorAll(".ops");
 
         if (!operationArray[0]) return
         
-        if (operationArray.at(-1) != '+' && operationArray.at(-1) != '-' && operationArray.at(-1) != '/' && operationArray.at(-1) != '×') operationArray.push(ope.textContent)
+        if (operationArray.at(-1) != '=' && operationArray.at(-1) != '+' && operationArray.at(-1) != '-' && operationArray.at(-1) != '/' && operationArray.at(-1) != '×') operationArray.push(ope.textContent)
         
         
         topbox.textContent = operationArray.join(" ");
@@ -130,6 +130,31 @@ const controls = document.querySelectorAll(".con");
     })
 })
 
+
+function equalto() {
+
+    let newArray = operationArray.slice(0, operationArray.length-1);
+
+    while (newArray.length > 1) {
+
+        let firstVar = newArray[0];
+        let secondVar = newArray[2];
+        let operator = newArray[1];
+
+        newArray.splice(0, 3);
+
+        newArray.unshift(operate(operator, firstVar, secondVar))
+
+
+    }
+
+    let result = newArray[0];
+    console.log(result)
+
+    botbox.textContent = result;
+
+
+}
 
 
 
