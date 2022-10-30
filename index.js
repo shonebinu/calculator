@@ -118,14 +118,6 @@ const controls = document.querySelectorAll(".con");
 
 
 
-
-            
-
-
-
-
-
-
             operationArray.push(+operation);
             operationArray.push(con.textContent);
             operation = '';
@@ -139,3 +131,12 @@ const controls = document.querySelectorAll(".con");
 })
 
 
+
+
+/*
+TODO: Add the support for '.'
+Handle exceptions like dividing by 0
+Keyboard support
+Glue everything up and get the result
+Operator changing when clicking another operator
+*/
