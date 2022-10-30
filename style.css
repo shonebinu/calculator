@@ -150,3 +150,7 @@ img {
 .but:active {
     background-color: white;
 }
+
+img:hover {
+    transform: rotate(30deg);
+}
