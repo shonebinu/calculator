@@ -1,7 +1,7 @@
 
 
 let operation = "";
-const operationArray = [];
+let operationArray = [];
 
 //add
 function add(a, b) {
@@ -36,7 +36,7 @@ const operate = (operator, a, b) => {
             return subtract(a, b);
             break;       
 
-        case '*':
+        case '×':
             return multiply(a, b);
             break;
     
@@ -69,7 +69,7 @@ const arithmeticOper = document.querySelectorAll(".ops");
 
         if (operation!="") operationArray.push(+operation)
 
-        if (!operationArray[0]) return
+        if (operationArray[0]==undefined) return
         
         if (operationArray.at(-1) != '=' && operationArray.at(-1) != '+' && operationArray.at(-1) != '-' && operationArray.at(-1) != '/' && operationArray.at(-1) != '×') operationArray.push(ope.textContent)
         
@@ -133,6 +133,7 @@ const controls = document.querySelectorAll(".con");
 
 function equalto() {
 
+
     let newArray = operationArray.slice(0, operationArray.length-1);
 
     while (newArray.length > 1) {
@@ -145,13 +146,19 @@ function equalto() {
 
         newArray.unshift(operate(operator, firstVar, secondVar))
 
+        console.log(newArray)
+
 
     }
 
     let result = newArray[0];
-    console.log(result)
+  
 
     botbox.textContent = result;
+
+
+    operation = result;
+    operationArray = [];
 
 
 }
@@ -159,9 +166,8 @@ function equalto() {
 
 
 /*
-TODO: Add the support for '.'
-Handle exceptions like dividing by 0
+TODO: Add the support for '.' (decimal) and round the values to precision of somewhat good
 Keyboard support
-Glue everything up and get the result
 Operator changing when clicking another operator
+Working with next calculations after the '='
 */

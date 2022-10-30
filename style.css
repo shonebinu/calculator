@@ -22,8 +22,8 @@ body {
 
 .num {
     margin: 1rem;
-    height: 6rem;
-    width: 6rem;
+    height: 5rem;
+    width: 5rem;
     border-radius: 50%;
     background-color: olivedrab;
     display: flex;
@@ -36,6 +36,10 @@ body {
 }
 
 .red {
+    background-color: #cf6679;
+}
+
+.o {
     background-color: #cf6679;
 }
 
