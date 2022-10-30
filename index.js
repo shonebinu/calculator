@@ -78,3 +78,23 @@ const arithmeticOper = document.querySelectorAll(".ops");
 })
 
 
+
+const controls = document.querySelectorAll(".con");
+[...controls].forEach(con => {
+    con.addEventListener("click", () => {
+        
+        if (con.textContent == "AC") location.reload()
+        if (con.textContent == "←") {
+            
+            let interArray = operation.split("");
+
+            interArray.pop();
+
+            operation = interArray.join("");
+            
+            botbox.textContent = operation;
+        }
+    })
+})
+
+
