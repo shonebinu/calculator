@@ -30,19 +30,15 @@ const operate = (operator, a, b) => {
 
         case '+':
             return add(a, b);
-            break;
 
         case '-':
-            return subtract(a, b);
-            break;       
+            return subtract(a, b);       
 
         case '×':
             return multiply(a, b);
-            break;
     
         case '/':
             return divide(a, b);
-            break;           
         }
 }
 
@@ -167,7 +163,6 @@ function equalto() {
 
 
 }
-
 
 
 
