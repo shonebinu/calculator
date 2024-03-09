@@ -35,3 +35,17 @@ main {
   align-items: center;
   border-radius: 10px;
 }
+
+.double {
+  width: 9rem;
+  aspect-ratio: auto;
+  color: #262626;
+}
+
+.red {
+  background: #fca5a5;
+}
+
+.green {
+  background: #86efac;
+}
