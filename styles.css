@@ -1,0 +1,37 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background: #171717;
+  color: #fafafa;
+  font-family: Poppins;
+  min-height: 100vh;
+  margin: 0;
+  justify-content: space-around;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+}
+
+.square {
+  font-weight: bold;
+  background: #262626;
+  padding: 1rem;
+  margin: .5rem;
+  width: 3rem;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
