@@ -34,6 +34,7 @@ const equalButton = document.querySelector("[data-equal]");
 const acButton = document.querySelector("[data-ac]");
 const backButton = document.querySelector("[data-back]");
 const plusOrMinusButton = document.querySelector("[data-plus-minus]");
+const decimalButton = document.querySelector("[data-decimal]");
 
 acButton.addEventListener("click", () => {
   displayValue = "";
@@ -46,6 +47,28 @@ numButtons.forEach(button => {
     displayValue += button.textContent;
     display.textContent = displayValue;
   });
+});
+
+decimalButton.addEventListener("click", () => {
+  checkNan();
+  if (displayValue.at(-1) === " " || displayValue === "") { // operator at the end or no value
+    displayValue += "0"; // add zero, if there is no precedent number
+  }
+
+  let match = displayValue.match(/[-+]?[0-9]*\.?[0-9]+/g);
+  if (match) {
+    let lastNum = match.at(-1);
+    if (lastNum.includes(".")) {
+      return;
+    }
+  }
+
+  if (displayValue.at(-1) === ".") {
+    return; // no more than one dot consecutively
+  }
+
+  displayValue += ".";
+  display.textContent = displayValue;
 });
 
 opButtons.forEach(button => {
@@ -80,7 +103,7 @@ plusOrMinusButton.addEventListener("click", () => {
 
 backButton.addEventListener("click", () => {
   checkNan();
-  if (displayValue.at(-1) === " ") {
+  if (displayValue.at(-1) === " " || displayValue.at(-2) === ".") { // remove the decimal, if only one char present after .
     displayValue = displayValue.substring(0, displayValue.length - 2);
   } else {
     displayValue = displayValue.substring(0, displayValue.length - 1);
@@ -90,6 +113,11 @@ backButton.addEventListener("click", () => {
 
 equalButton.addEventListener("click", () => {
   checkNan();
+  if (displayValue.at(-1) === ".") { // if . at last, add a zero (it can be removed as well, both are same)
+    displayValue += "0";
+    display.textContent += displayValue;
+  }
+
   let regex = /[-+]?[0-9]*\.?[0-9]+/;
 
   while (displayValue.includes(" ")) {
