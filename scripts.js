@@ -24,6 +24,8 @@ const display = document.querySelector(".display");
 const numButtons = document.querySelectorAll(".num");
 const opButtons = document.querySelectorAll(".op");
 const equalButton = document.querySelector("[data-equal]");
+const acButton = document.querySelector("[data-ac]");
+const backButton = document.querySelector("[data-back]");
 
 numButtons.forEach(button => {
   button.addEventListener("click", () => {
@@ -49,12 +51,29 @@ opButtons.forEach(button => {
 });
 
 equalButton.addEventListener("click", () => {
-  let a, op, b;
-  [a, op, b] = displayValue.split(" ");
-  [a, b] = [+a, +b];
+  while ("+-/*".split("").some(op => displayValue.includes(op))) {
+    let a, op, b;
+    [a, op, b] = displayValue.split(" ");
+    [a, b] = [+a, +b];
 
-  let result = calculator.operate(a, op, b);
-  displayValue = `${result}`;
+    let result = calculator.operate(a, op, b);
+    let restOfString = displayValue.split(" ").slice(3).join(" ");
+    displayValue = `${result} ${restOfString}`;
 
+    display.textContent = displayValue;
+  }
+});
+
+acButton.addEventListener("click", () => {
+  displayValue = "";
+  display.textContent = displayValue;
+});
+
+backButton.addEventListener("click", () => {
+  if (displayValue.at(-1) === " ") {
+    displayValue = displayValue.substring(0, displayValue.length - 2);
+  } else {
+    displayValue = displayValue.substring(0, displayValue.length - 1);
+  }
   display.textContent = displayValue;
 });
