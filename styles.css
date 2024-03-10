@@ -22,10 +22,17 @@ main {
 
 .display {
   background: #262626;
-  width: 25rem;
+  width: 22rem;
   aspect-ratio: 5/2;
   border-radius: 10px;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+  overflow: hidden;
 }
 
 .row {
@@ -45,6 +52,10 @@ main {
   border-radius: 10px;
 }
 
+.square:active {
+  background: #e5e5e5;
+}
+
 .double {
   width: 9rem;
   aspect-ratio: auto;
@@ -57,6 +68,11 @@ main {
 
 .green {
   background: #86efac;
+}
+
+.op {
+  background: #fdba74;
+  color: #262626;
 }
 
 .square:hover {
