@@ -30,11 +30,11 @@ let displayValue = "";
 const display = document.querySelector(".display");
 const numButtons = document.querySelectorAll(".num");
 const opButtons = document.querySelectorAll(".op");
-const equalButton = document.querySelector("[data-equal]");
+const equalButton = document.querySelector("p[value='Enter']");
 const acButton = document.querySelector("[data-ac]");
-const backButton = document.querySelector("[data-back]");
+const backButton = document.querySelector("p[value='Backspace']");
 const plusOrMinusButton = document.querySelector("[data-plus-minus]");
-const decimalButton = document.querySelector("[data-decimal]");
+const decimalButton = document.querySelector("p[value='.']");
 
 acButton.addEventListener("click", () => {
   displayValue = "";
@@ -103,7 +103,12 @@ plusOrMinusButton.addEventListener("click", () => {
 
 backButton.addEventListener("click", () => {
   checkNan();
-  if (displayValue.at(-1) === " " || displayValue.at(-2) === ".") { // remove the decimal, if only one char present after .
+  if (
+    displayValue.at(-2) === " "
+    || displayValue.at(-1) === " "
+    || displayValue.at(-2) === "."
+    || (!isNaN(+displayValue.at(-1)) && displayValue.at(-2) === "-") // negative num
+  ) { // remove the decimal, if only one char present after .
     displayValue = displayValue.substring(0, displayValue.length - 2);
   } else {
     displayValue = displayValue.substring(0, displayValue.length - 1);
@@ -146,4 +151,19 @@ equalButton.addEventListener("click", () => {
   }
 
   display.textContent = displayValue;
+});
+
+document.addEventListener("keydown", (e) => {
+  if (
+    !isNaN(parseInt(e.key))
+    || ("/*-+".includes(e.key))
+    || e.key === "Backspace"
+    || e.key === "."
+    || e.key == "Enter"
+  ) {
+    const targetElement = document.querySelector(`p[value='${e.key}']`);
+    if (targetElement) {
+      targetElement.click();
+    }
+  }
 });
