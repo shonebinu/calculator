@@ -17,6 +17,13 @@ function Calculator() {
   };
 }
 
+function checkNan() {
+  if (displayValue.includes("NaN") || displayValue.includes("Infinity")) {
+    displayValue = "";
+    display.textContent = displayValue;
+  }
+}
+
 const calculator = new Calculator();
 
 let displayValue = "";
@@ -35,6 +42,7 @@ acButton.addEventListener("click", () => {
 
 numButtons.forEach(button => {
   button.addEventListener("click", () => {
+    checkNan();
     displayValue += button.textContent;
     display.textContent = displayValue;
   });
@@ -42,6 +50,7 @@ numButtons.forEach(button => {
 
 opButtons.forEach(button => {
   button.addEventListener("click", () => {
+    checkNan();
     if (displayValue === "") {
       return;
     }
@@ -57,6 +66,7 @@ opButtons.forEach(button => {
 });
 
 plusOrMinusButton.addEventListener("click", () => {
+  checkNan();
   let match = displayValue.match(/[-+]?[0-9]*\.?[0-9]+/g);
   if (match) {
     let lastNum = parseFloat(match.at(-1));
@@ -69,6 +79,7 @@ plusOrMinusButton.addEventListener("click", () => {
 });
 
 backButton.addEventListener("click", () => {
+  checkNan();
   if (displayValue.at(-1) === " ") {
     displayValue = displayValue.substring(0, displayValue.length - 2);
   } else {
@@ -78,6 +89,7 @@ backButton.addEventListener("click", () => {
 });
 
 equalButton.addEventListener("click", () => {
+  checkNan();
   let regex = /[-+]?[0-9]*\.?[0-9]+/;
 
   while (displayValue.includes(" ")) {
