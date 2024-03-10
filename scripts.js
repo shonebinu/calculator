@@ -26,12 +26,15 @@ const opButtons = document.querySelectorAll(".op");
 const equalButton = document.querySelector("[data-equal]");
 const acButton = document.querySelector("[data-ac]");
 const backButton = document.querySelector("[data-back]");
+const plusOrMinusButton = document.querySelector("[data-plus-minus]");
+
+acButton.addEventListener("click", () => {
+  displayValue = "";
+  display.textContent = displayValue;
+});
 
 numButtons.forEach(button => {
   button.addEventListener("click", () => {
-    if ("+-*/".includes(displayValue.at(-1))) {
-      displayValue += " ";
-    }
     displayValue += button.textContent;
     display.textContent = displayValue;
   });
@@ -39,34 +42,30 @@ numButtons.forEach(button => {
 
 opButtons.forEach(button => {
   button.addEventListener("click", () => {
-    if ("+-*/".includes(displayValue.at(-1))) {
-      displayValue = displayValue.substring(0, displayValue.length - 2);
+    if (displayValue === "") {
+      return;
+    }
+    if (displayValue.at(-1) === " ") {
+      displayValue = displayValue.substring(0, displayValue.length - 2); // if operator clicked again, remove the current one with space
     }
     if ("0123456789".includes(displayValue.at(-1))) {
       displayValue += " ";
     }
-    displayValue += button.textContent;
+    displayValue += button.textContent + " "; // spacing after the operator
     display.textContent = displayValue;
   });
 });
 
-equalButton.addEventListener("click", () => {
-  while ("+-/*".split("").some(op => displayValue.includes(op))) {
-    let a, op, b;
-    [a, op, b] = displayValue.split(" ");
-    [a, b] = [+a, +b];
+plusOrMinusButton.addEventListener("click", () => {
+  let match = displayValue.match(/[-+]?[0-9]*\.?[0-9]+/g);
+  if (match) {
+    let lastNum = parseFloat(match.at(-1));
+    let lastIndex = displayValue.lastIndexOf(lastNum.toString());
 
-    let result = calculator.operate(a, op, b);
-    let restOfString = displayValue.split(" ").slice(3).join(" ");
-    displayValue = `${result} ${restOfString}`;
-
+    displayValue = displayValue.substring(0, lastIndex)
+      + displayValue.substring(lastIndex).replace(lastNum.toString(), `${-lastNum}`);
     display.textContent = displayValue;
   }
-});
-
-acButton.addEventListener("click", () => {
-  displayValue = "";
-  display.textContent = displayValue;
 });
 
 backButton.addEventListener("click", () => {
@@ -75,5 +74,36 @@ backButton.addEventListener("click", () => {
   } else {
     displayValue = displayValue.substring(0, displayValue.length - 1);
   }
+  display.textContent = displayValue;
+});
+
+equalButton.addEventListener("click", () => {
+  let regex = /[-+]?[0-9]*\.?[0-9]+/;
+
+  while (displayValue.includes(" ")) {
+    let opArr = [];
+
+    let match = displayValue.match(regex);
+    if (match) {
+      let num = parseFloat(match[0]);
+      displayValue = displayValue.replace(match[0], "");
+      opArr.push(num);
+    }
+
+    if ([" +", " -", " *", " /"].some(op => displayValue.slice(0, -1).includes(op))) {
+      opArr.push(displayValue.trim()[0]); // get the operator after removing the spacing
+      displayValue = displayValue.slice(3); // space + operator + space (3 chars)
+    }
+
+    match = displayValue.match(regex);
+    if (match) {
+      let num = parseFloat(match[0]);
+      displayValue = displayValue.replace(match[0], "");
+      opArr.push(num);
+    }
+
+    displayValue = calculator.operate(opArr[0], opArr[1], opArr[2]) + displayValue;
+  }
+
   display.textContent = displayValue;
 });
