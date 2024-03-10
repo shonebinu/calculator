@@ -40,7 +40,7 @@ numButtons.forEach(button => {
 opButtons.forEach(button => {
   button.addEventListener("click", () => {
     if ("+-*/".includes(displayValue.at(-1))) {
-      return;
+      displayValue = displayValue.substring(0, displayValue.length - 2);
     }
     if ("0123456789".includes(displayValue.at(-1))) {
       displayValue += " ";
