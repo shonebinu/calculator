@@ -16,7 +16,16 @@ header {
 
 main {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.display {
+  background: #262626;
+  width: 25rem;
+  aspect-ratio: 5/2;
+  border-radius: 10px;
+  margin-bottom: 1rem;
 }
 
 .row {
@@ -48,4 +57,8 @@ main {
 
 .green {
   background: #86efac;
+}
+
+.square:hover {
+  cursor: pointer;
 }
